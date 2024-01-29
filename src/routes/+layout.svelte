@@ -6,15 +6,10 @@
 
 <script>
     import {browser} from "$app/environment";
-    let b = "";
     if (browser) {
         window.Telegram.WebApp.expand();
-        b = window.Telegram.WebApp.initData;
-        console.log(window.Telegram.WebApp.initData);
     }
-
 </script>
-<h1>{b}</h1>
 <div id="header">
     <h1><a href="./">Валентинка Ботик</a></h1>
 </div>
