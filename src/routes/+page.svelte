@@ -1,3 +1,12 @@
+<script>
+    import {browser} from "$app/environment";
+
+    if (browser) {
+        window.Telegram.WebApp.expand();
+    }
+
+</script>
+
 <div id="block">
     <div id="header">
         <h1>Валентинка Ботик</h1>
