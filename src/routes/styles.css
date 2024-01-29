@@ -8,7 +8,7 @@ button {
     padding: 1.5vh;
     border-radius: 10px;
     border: none;
-    width: 25vh;
+    width: 15dvh;
     transition-duration: 0.1s;
 
 }
@@ -19,7 +19,7 @@ button:active {
 }
 
 #glupi {
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 1vh;
@@ -39,7 +39,7 @@ button:active {
     font-family: "Nunito", "system-ui";
     font-weight: 700;
     color: #88b2f1;
-    font-size: 30vh;
+    font-size: 25vh;
     margin: 0;
     letter-spacing: 0;
     line-height: 25vh;
