@@ -5,10 +5,10 @@ button {
     color: white;
     font-family: "Nunito", "system-ui";
     font-weight: 700;
-    padding: 10px;
+    padding: 1.5vh;
     border-radius: 10px;
     border: none;
-    width: 200px;
+    width: 25vh;
     transition-duration: 0.1s;
 
 }
@@ -22,7 +22,7 @@ button:active {
     width: 100vw;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 1vh;
     align-items: center;
 }
 
@@ -39,8 +39,8 @@ button:active {
     font-family: "Nunito", "system-ui";
     font-weight: 700;
     color: #88b2f1;
-    font-size: 250px;
+    font-size: 30vh;
     margin: 0;
     letter-spacing: 0;
-    line-height: 200px;
+    line-height: 25vh;
 }
