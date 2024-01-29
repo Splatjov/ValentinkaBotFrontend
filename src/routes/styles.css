@@ -44,3 +44,8 @@ button:active {
     letter-spacing: 0;
     line-height: 25vh;
 }
+
+#block {
+    width: 100%;
+    height: 100%;
+}
