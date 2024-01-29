@@ -4,13 +4,9 @@
     if (browser) {
         window.Telegram.WebApp.expand();
     }
-
 </script>
 
 <div id="block">
-    <div id="header">
-        <h1>Валентинка Ботик</h1>
-    </div>
     <div id="header">
         <h3>Пока что я отправил:</h3>
     </div>

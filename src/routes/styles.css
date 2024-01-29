@@ -11,7 +11,7 @@ button {
     padding: 1.5vh;
     border-radius: 10px;
     border: none;
-    width: 15dvh;
+    width: 25dvh;
     transition-duration: 0.1s;
 
 }
@@ -27,6 +27,7 @@ button:active {
     justify-content: center;
     gap: 1vh;
     align-items: center;
+    padding-top: 2vh;
 }
 
 #header{
@@ -51,4 +52,50 @@ button:active {
 #block {
     width: 100%;
     height: 100%;
+}
+
+#imgblock {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#minitext{
+    font-family: "Nunito", "system-ui";
+    font-weight: 300;
+    color: #acc8f1;
+    display: flex;
+    font-size: 2vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+a:link {
+    text-decoration: none;
+    color: #88b2f1;
+}
+a:visited {
+    text-decoration: none;
+    color: #88b2f1;
+}
+a:hover {
+    text-decoration: none;
+    color: #88b2f1;
+}
+a:active {
+    text-decoration: none;
+    color: #88b2f1;
+}
+
+#avatar {
+    display: inline-block;
+    position: relative;
+    padding-top: 0;
+    width: 20vh;
+    height: 20vh;
+    overflow: hidden;
+    border-radius: 50%;
 }
