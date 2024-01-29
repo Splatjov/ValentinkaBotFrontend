@@ -11,7 +11,7 @@ button {
     padding: 1.5vh;
     border-radius: 10px;
     border: none;
-    width: 30dvh;
+    width: 28dvh;
     transition-duration: 0.1s;
 
 }
@@ -25,7 +25,7 @@ button:active {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 1vh;
+    gap: 0.8vh;
     align-items: center;
     padding-top: 2vh;
 }
@@ -37,6 +37,25 @@ button:active {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cutetext {
+    margin: 0;
+}
+
+.smaller {
+    font-size: 1vh;
+}
+
+#miniheader{
+    font-family: "Nunito", "system-ui";
+    font-weight: 700;
+    color: #88b2f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2px;
 }
 
 #big\ number{

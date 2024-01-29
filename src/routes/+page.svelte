@@ -1,11 +1,3 @@
-<script>
-    import {browser} from "$app/environment";
-
-    if (browser) {
-        window.Telegram.WebApp.expand();
-    }
-</script>
-
 <div id="block">
     <div id="header">
         <h3>Пока что я отправил:</h3>
