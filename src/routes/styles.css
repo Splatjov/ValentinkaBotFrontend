@@ -118,3 +118,10 @@ a:active {
     overflow: hidden;
     border-radius: 50%;
 }
+
+#inputstyle
+{
+    height:50px;
+    width:200px;
+    font-size:9pt;
+}

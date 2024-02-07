@@ -1,12 +1,4 @@
-<script>
-    function ping() {
-        fetch("http://localhost:3000/ping", {
-            headers: {
-                "X-Tg-Token": window.Telegram.WebApp.initData,
-            },
-        })
-    }
-</script>
+
 
 <div id="block">
     <div id="header">
@@ -26,9 +18,6 @@
             Отправить Валентинку
         </button>
     </div>
-    <button on:click={ping}>
-        eter
-    </button>
 
 </div>
 
