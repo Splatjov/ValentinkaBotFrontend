@@ -6,22 +6,25 @@
     import Modal from 'svelte-simple-modal';
     import { modalMessage, surpriseMessage } from '../../lib/stores.js';
 
-    let backendUrl = "https://b9af-37-47-129-91.ngrok-free.app"
+    let backendUrl = "https://8b7d-37-47-138-143.ngrok-free.app"
 
-    export function ping() {
-        surpriseMessage.set('отправка...');
+    export async function ping() {
+        await surpriseMessage.set('отправка...');
         if (name !== "Никто не выбран" && name !== "loading") {
             handleOnSubmit();
             return;
         }
-        fetch(backendUrl + "/ping", {
+        await surpriseMessage.set('проверь сообщения в боте!');
+        await fetch(backendUrl + "/ping", {
             method: "get",
             headers: new Headers({
                 "X-Tg-Token": window.Telegram.WebApp.initData,
                 "ngrok-skip-browser-warning": "69420",
             }),
             Origin: window.location.origin,
-        })
+        });
+        window.Telegram.WebApp.openTelegramLink("https://t.me/valentinka_kalbot")
+        window.Telegram.WebApp.close();
     }
 
     const url = $page.url;
@@ -98,6 +101,8 @@
             body: text,
             Origin: window.location.origin,
         });
+        text = "";
+        radioValue = 'be mine';
         if (response.status === 500)
         {
             await surpriseMessage.set('произошла ошибка во время отправки:(');
@@ -145,8 +150,8 @@
     <p class="cutetext smaller">id: {id}</p>
     <p class="cutetext smaller">(проверь эти данные!)</p>
     {#if name !== "Никто не выбран" && name !== "loading"}
-        <Radio {options} legend='Выбери тип валентинки' bind:userSelected={radioValue}/>
         <textarea id="inputstyle" placeholder="Текст валентинки" name="message" bind:value={text}/>
+        <Radio {options} legend='Выбери тип валентинки' bind:userSelected={radioValue}/>
     {/if}
 </div>
 <div id="glupi">

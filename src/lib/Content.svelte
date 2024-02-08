@@ -15,3 +15,7 @@
 <p>
     <button on:click={showSurprise}>{$modalMessage}</button>
 </p>
+
+<style>
+    @import "../routes/styles.css";
+</style>

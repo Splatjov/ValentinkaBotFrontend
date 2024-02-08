@@ -9,7 +9,7 @@
     import "../app.pcss";
     import {browser} from "$app/environment";
     if (browser) {
-        let backendUrl = "https://b9af-37-47-129-91.ngrok-free.app"
+        let backendUrl = "https://8b7d-37-47-138-143.ngrok-free.app"
         window.Telegram.WebApp.expand();
         fetch(backendUrl+"/check", {
             method: "get",

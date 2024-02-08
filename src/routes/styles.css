@@ -52,8 +52,9 @@ button:active {
     font-weight: 700;
     color: #88b2f1;
     display: flex;
-    justify-content: center;
+    text-align: center;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     gap: 2px;
 }
@@ -91,6 +92,11 @@ button:active {
     align-items: center;
     text-align: center;
 }
+p {
+    font-family: "Nunito", "system-ui";
+    font-weight: 700;
+    color: #88b2f1;
+}
 
 a:link {
     text-decoration: none;
@@ -121,7 +127,26 @@ a:active {
 
 #inputstyle
 {
-    height:50px;
-    width:200px;
+    height:10vh;
+    width:80vw;
     font-size:9pt;
+    resize: none;
+    margin-top: 2vh;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    font-family: "Nunito", "system-ui";
+    font-weight: 700;
+    color: #88b2f1;
+    border-width: 1px;
+    padding: 4px;
+
+
+}
+textarea::placeholder {
+    color: #88b2f1;
+}
+textarea:focus {
+    border-width: 1px;
+    outline: none !important;
 }
