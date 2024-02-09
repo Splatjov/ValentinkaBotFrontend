@@ -162,6 +162,52 @@ a:active {
     border-radius: 50%;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: darkblue;
+}
+
+img {
+    border: 0;
+    width: 100%;
+}
+
+.container {
+    position: relative; /* Set container's position to relative */
+}
+
+.shine-box {
+    position: relative; /* Set shine-box's position to relative */
+    width: 90vw;
+    overflow: hidden;
+}
+
+.shine-box:before {
+    position: absolute;
+    top: 0;
+    left: -500px;
+    content: "";
+    width: 120px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: skew(-50deg);
+    animation: shine 3s ease infinite; /* Apply animation to the shine effect */
+}
+
+@keyframes shine {
+    from {
+        left: -500px;
+    }
+    to {
+        left: 655px;
+    }
+}
+
+
+
 #inputstyle
 {
     height:10vh;

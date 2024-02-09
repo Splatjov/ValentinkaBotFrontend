@@ -15,6 +15,29 @@ export function redirect()
     window.location.href = newPath;
 }
 
+export function isFirst(index) {
+    return index === 0;
+}
+
+// Function to check if the current item is the last element
+export function isLast(index, valentines) {
+    return index === valentines.length - 1;
+}
+
+export function generateStyle(index, valentines)
+{
+    let listStyle = "";
+    if (isFirst(index))
+    {
+        listStyle+= 'border-top-left-radius: 12px; border-top-right-radius: 12px;';
+    }
+    if (isLast(index,valentines))
+    {
+        listStyle+='border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;';
+    }
+    return listStyle;
+}
+
 export async function ping() {
     await fetch(backendUrl + "/ping", {
         method: "get",
