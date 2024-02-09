@@ -3,7 +3,7 @@
     import {generateStyle} from "../../lib/functions.js";
     import Countdown from 'svelte-countdown/src/index.js'
 
-    let backendUrl = "https://8b7d-37-47-138-143.ngrok-free.app"
+    let backendUrl = "https://api_valentinka.splatjov.space"
     import { browser } from "$app/environment";
     let response;
     // eslint-disable-next-line no-unused-vars

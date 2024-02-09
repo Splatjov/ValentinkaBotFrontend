@@ -5,7 +5,7 @@
     import {redirect} from "../../lib/functions.js";
 
 
-    let backendUrl = "https://8b7d-37-47-138-143.ngrok-free.app"
+    let backendUrl = "https://api_valentinka.splatjov.space"
 
 
 
