@@ -120,21 +120,6 @@
     async function displayProtectedImage() {
         // Fetch the image.
         name = 'loading'
-        const responsePhoto = await fetch(backendUrl + "/get_user_photo", {
-            method: "get",
-            headers: new Headers({
-                "X-Tg-Token": window.Telegram.WebApp.initData,
-                "ngrok-skip-browser-warning": "69420",
-                "UserID": userid
-            }),
-            Origin: window.location.origin,
-        });
-        if (responsePhoto.ok) {
-            time = responsePhoto.headers.get('Time');
-            const blob = await responsePhoto.blob();
-            const objectUrl = URL.createObjectURL(blob);
-            avatarlink = objectUrl;
-        }
         await fetch(backendUrl + "/get_user_info", {
             method: "get",
             headers: new Headers({
@@ -155,6 +140,21 @@
             username = data.username;
             id = data.id;
         });
+        const responsePhoto = await fetch(backendUrl + "/get_user_photo", {
+            method: "get",
+            headers: new Headers({
+                "X-Tg-Token": window.Telegram.WebApp.initData,
+                "ngrok-skip-browser-warning": "69420",
+                "UserID": userid
+            }),
+            Origin: window.location.origin,
+        });
+        if (responsePhoto.ok) {
+            time = responsePhoto.headers.get('Time');
+            const blob = await responsePhoto.blob();
+            const objectUrl = URL.createObjectURL(blob);
+            avatarlink = objectUrl;
+        }
     }
 
     if (browser && userid != null) {

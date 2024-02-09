@@ -108,21 +108,6 @@
     async function displayProtectedImage() {
         // Fetch the image.
         name = 'loading'
-        const responsePhoto = await fetch(backendUrl + "/get_user_photo", {
-            method: "get",
-            headers: new Headers({
-                "X-Tg-Token": window.Telegram.WebApp.initData,
-                "ngrok-skip-browser-warning": "69420",
-                "UserID": userid
-            }),
-            Origin: window.location.origin,
-        });
-        if (responsePhoto.ok) {
-            time = responsePhoto.headers.get('Time');
-            const blob = await responsePhoto.blob();
-            const objectUrl = URL.createObjectURL(blob);
-            avatarlink = objectUrl;
-        }
         await fetch(backendUrl + "/get_user_info", {
             method: "get",
             headers: new Headers({
@@ -143,6 +128,21 @@
             username = data.username;
             id = data.id;
         });
+        const responsePhoto = await fetch(backendUrl + "/get_user_photo", {
+            method: "get",
+            headers: new Headers({
+                "X-Tg-Token": window.Telegram.WebApp.initData,
+                "ngrok-skip-browser-warning": "69420",
+                "UserID": userid
+            }),
+            Origin: window.location.origin,
+        });
+        if (responsePhoto.ok) {
+            time = responsePhoto.headers.get('Time');
+            const blob = await responsePhoto.blob();
+            const objectUrl = URL.createObjectURL(blob);
+            avatarlink = objectUrl;
+        }
     }
 
     if (browser && userid != null) {
@@ -283,13 +283,15 @@
                       style="width: 90vw; resize: none; opacity: 0.5" disabled bind:value={text}/>
             <Label for="textarea-id" class="mb-2" style="color: #737171; font-size: 3vw">Лимит: 1000 символов</Label>
         </div>
-        <div class="simpleflex">
-            <p class="description" style="padding-bottom: 1vh; font-size: 10px">💡 Удалил валентинку? Не забудь отправить
-                новую!</p>
-            <button on:click={handleOnSubmit} style="width: 90vw; background-color: #FF6262">
-                Удалить валентинку
-            </button>
-        </div>
+        {#if !itsTime}
+            <div class="simpleflex">
+                <p class="description" style="padding-bottom: 1vh; font-size: 10px">💡 Удалил валентинку? Не забудь отправить
+                    новую!</p>
+                <button on:click={handleOnSubmit} style="width: 90vw; background-color: #FF6262">
+                    Удалить валентинку
+                </button>
+            </div>
+        {/if}
     {/if}
 
 {/await}

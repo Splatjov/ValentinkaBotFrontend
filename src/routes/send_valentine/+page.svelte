@@ -2,6 +2,7 @@
     import { page } from '$app/stores';
     import { browser } from "$app/environment";
     import {Helper, Label, Radio, Textarea} from "flowbite-svelte";
+    import {redirect} from "../../lib/functions.js";
 
 
     let backendUrl = "https://8b7d-37-47-138-143.ngrok-free.app"
@@ -35,6 +36,7 @@
             if (resp.ok)
             {
                 itsTime = true;
+                redirect();
             }
         })
         await fetch(backendUrl + "/get_valentine_info", {
