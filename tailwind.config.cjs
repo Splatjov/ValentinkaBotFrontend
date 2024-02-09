@@ -1,29 +1,30 @@
 const config = {
-  content: ['./src/**/*.{html,js,svelte,ts}', './node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'],
+    content: ['./src/**/*.{html,js,svelte,ts}', './node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'],
 
-  plugins: [require('flowbite/plugin')],
+    plugins: [require('flowbite/plugin')],
 
-  darkMode: 'class',
+    darkMode: 'class',
 
-  theme: {
-    extend: {
-      colors: {
-        // flowbite-svelte
-        primary: {
-          50: '#FFF5F2',
-          100: '#FFF1EE',
-          200: '#FFE4DE',
-          300: '#FFD5CC',
-          400: '#FFBCAD',
-          500: '#FE795D',
-          600: '#EF562F',
-          700: '#EB4F27',
-          800: '#CC4522',
-          900: '#A5371B'
+    theme: {
+        extend: {
+            colors: {
+                // flowbite-svelte
+                primary: {
+                    50: '#FFF5F2',
+                    100: '#d1e2f6',
+                    200: '#bad0fa',
+                    300: '#acc4fc',
+                    400: '#93b1fc',
+                    500: '#7499fa',
+                    600: '#628bfa',
+                    700: '#6389f6',
+                    800: '#4979f8',
+                    900: '#2f6af8'
+                }
+            }
         }
-      }
     }
-  }
 };
 
 module.exports = config;
+
