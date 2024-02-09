@@ -176,5 +176,7 @@
 
 
 <style>
+    @import "../../node_modules/bootstrap/css/bootstrap-theme.min.css";
+    @import "../../node_modules/bootstrap/css/bootstrap.min.css";
     @import "styles.css";
 </style>
