@@ -14,13 +14,23 @@
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@types/eslint": "8.56.0",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8.56.0",
     "eslint-plugin-svelte": "^2.35.1",
+    "flowbite": "^2.2.1",
+    "flowbite-svelte": "^0.44.23",
+    "postcss": "^8.4.32",
+    "postcss-load-config": "^5.0.2",
     "svelte": "^4.2.7",
+    "tailwindcss": "^3.3.6",
     "vite": "^5.0.3"
   },
   "type": "module",
   "dependencies": {
+    "@lottiefiles/lottie-player": "^2.0.3",
+    "bootstrap": "^5.3.2",
+    "dayjs": "^1.11.10",
+    "svelte-countdown": "^1.1.2",
     "svelte-simple-modal": "^1.6.2"
   }
 }

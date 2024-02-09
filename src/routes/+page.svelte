@@ -1,12 +1,20 @@
 <script>
 
+    import {ping} from "../lib/functions.js";
+    import Countdown from 'svelte-countdown/src/index.js'
+
     let backendUrl = "https://8b7d-37-47-138-143.ngrok-free.app"
     import { browser } from "$app/environment";
     let response;
-    let valentines;
+    // eslint-disable-next-line no-unused-vars
+    let valentines = [];
+    // eslint-disable-next-line no-unused-vars
     let user;
-    let count, countDef, countBM;
+    // eslint-disable-next-line no-unused-vars
+    let count=0, countDef, countBM;
     let itsTime = false;
+    let time;
+
     async function get_data()
     {
         await fetch(backendUrl + "/get_my_valentine", {
@@ -20,6 +28,7 @@
             if (resp.ok)
             {
                 itsTime = true;
+                time = resp.headers.get('Time');
             }
         })
         await fetch(backendUrl + "/get_valentine_info", {
@@ -31,6 +40,7 @@
             Origin: window.location.origin,
         }).then(resp => {
             if (resp.ok) {
+                time = resp.headers.get('Time');
                 return resp.json()
             }
             else {
@@ -42,47 +52,124 @@
             count = data.countReceived;
             countDef = data.countSentDefault;
             countBM = data.countSentBeMine;
-            console.log(valentines, user, count, countDef, countBM);
+            console.log(valentines);
         })
     }
+    function isFirst(index) {
+        return index === 0;
+    }
+
+    // Function to check if the current item is the last element
+    function isLast(index) {
+        return index === valentines.length - 1;
+    }
+    function generateStyle(index)
+    {
+        let listStyle = "";
+        if (isFirst(index))
+        {
+            listStyle+= 'border-top-left-radius: 12px; border-top-right-radius: 12px';
+        }
+        if (isLast(index))
+        {
+            listStyle+= 'border-bottom-left-radius: 12px; border-bottom-right-radius: 12px';
+        }
+        return listStyle;
+    }
+    function updateIfPossible(str) {
+        if (str === "")
+        {
+            return "Нет текста";
+        }
+        return str;
+    }
+    function chooseOne(id, name) {
+        if (name === "") return id;
+        return name;
+    }
+    function matchType(str) {
+        if (str === 'default') return "Обычная";
+        else return 'Be mine';
+    }
+
+    function s(a)
+    {
+        if (a<10)
+        {
+            return '0'+a.toString();
+        }
+        return a.toString();
+    }
+
     if (browser) {
         get_data();
     }
 
-
 </script>
-
-<div id="block">
-    <div id="header">
-        <h3>Пока что я получил:</h3>
-    </div>
-    <div id="header">
-        {#if count === undefined}
-            <span id="big number">0</span>
-        {/if}
-        {#if count !== undefined}
-            <span id="big number">{count}</span>
-        {/if}
-    </div>
-    <div id="header">
-        <h3>Валентинок</h3>
-    </div>
-    <div id="glupi">
-        <button onclick="location.href='/my_valentines'">
-            Мои Валентинки
-        </button>
-        {#if itsTime}
-            <button onclick="location.href='/get_my_valentines'">
-                Посмотреть мои валентинки
+{#await countDef}
+    <p>...waiting</p>
+{:then number}
+    <html lang="ru">
+    <div id="block">
+        <div style="display: flex; justify-content: center; padding: 1vh">
+            <lottie-player
+                    autoplay
+                    loop
+                    mode="normal"
+                    src="20_HEART_MENDING_OUT.json"
+                    style="width: 10vh"
+            ></lottie-player>
+        </div>
+        <div class = "simpletext" style="display: flex; justify-content: center; flex-direction: column; align-items: center; padding: 1vh">
+            <h3 style="max-width: 75vw">Отправьте валентинку другу или любимому человеку.</h3>
+            <h3 style="max-width: 90vw">Проверьте, взаимны ли ваши чувства?</h3>
+        </div>
+        <div class="simpleflex">
+            <button style = "width: 90vw; opacity: 0.5; cursor: not-allowed; pointer-events: none;" onclick="location.href='/get_my_valentines'" disabled>
+                {#if count === 0}
+                    Посмотреть ❤️‍🩹 для меня
+                {:else}
+                    Посмотреть {count} ❤️‍🩹
+                {/if}
             </button>
-        {:else}
-            <button onclick="location.href='/send_valentine'">
-                Отправить Валентинку
+            <p class="description" style="padding-bottom: 1vh">🔒 Будет доступно с 14 февраля в 12:00 по UTC+3</p>
+            <button style = "width: 90vw; " on:click={ping} >
+                Отправить валентинку
             </button>
-        {/if}
-    </div>
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: space-between; padding-top: 0.5vh; padding-left: 4vw; padding-right: 4vw">
+            <p class = "naming">Валентинки от меня:</p>
+            <Countdown from="2024-02-14 12:00:00" dateFormat="YYYY-MM-DD H:m:s" zone="Europe/Moscow" let:remaining>
+                <div class="whatever">
+                    {#if remaining.done === false}
+                        {#if remaining.years === 0 && remaining.months === 0&& remaining.weeks === 0 && remaining.days === 0}
+                            <p class = "naming" style="color: #A12AAB">До отправки: {s(remaining.hours)}:{s(remaining.minutes)}:{s(remaining.seconds)}</p>
+                        {:else }
+                            <p class = "naming" style="color: #A12AAB">Отправятся 14.02</p>
+                        {/if}
+                    {:else}
+                        <p class = "naming" style="color: #A12AAB">Время пришло!</p>
+                    {/if}
+                </div>
+            </Countdown>
+        </div>
+        <div class="list-group" style="width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center">
+            {#each valentines as valentine, index}
+                <a href="/valentine?userID={valentine.receiver.id}&ID={valentine.id}" class="list-group-item list-group-item-action flex-column align-items-start" style="width: 90vw; {generateStyle(index)}">
+                    <p class="simpletext" style="text-align: left; line-height: 1.2">{updateIfPossible(valentine.text.slice(0,50))}</p>
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="description" style="padding-top: 1vh">{chooseOne("ID: " + valentine.receiver.id, valentine.receiver.name)}</h5>
+                        <small class="description" style="padding-top: 1vh">{matchType(valentine.type)}</small>
+                    </div>
+                </a>
+            {/each}
 
-</div>
+        </div>
+    </div>
+    </html>
+{/await}
+
+
 
 
 

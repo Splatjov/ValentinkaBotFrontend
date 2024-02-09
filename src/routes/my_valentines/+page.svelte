@@ -83,6 +83,7 @@
                     <span >{valentine.id} - {valentine.receiver.id} - {valentine.text} - {valentine.type}</span>
                 {/if}
             {/if}
+            <p class="description" style="padding-bottom: 1vh">💡 Удалил валентинку? Не забудь отправить новую!</p>
             <DeleteButton valID={valentine.id} func={delete_valentine} message="Удалить валентинку {valentine.id}"></DeleteButton>
         {/each}
     {/if}
