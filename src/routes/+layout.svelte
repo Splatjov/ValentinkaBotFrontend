@@ -25,7 +25,7 @@
         } else {
             window.Telegram.WebApp.BackButton.isVisible = false;
         }
-        let backendUrl = "https://api_valentinka.splatjov.space"
+        let backendUrl = "https://valentinka.splatjov.space"
         window.Telegram.WebApp.expand();
         fetch(backendUrl + "/check", {
             method: "get",

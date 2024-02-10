@@ -3,8 +3,9 @@
     import {generateStyle} from "../../lib/functions.js";
     import Countdown from 'svelte-countdown/src/index.js'
 
-    let backendUrl = "https://api_valentinka.splatjov.space"
+    let backendUrl = "https://valentinka.splatjov.space"
     import { browser } from "$app/environment";
+    import {Listgroup} from "flowbite-svelte";
     let response;
     // eslint-disable-next-line no-unused-vars
     let valentines = [];
@@ -53,6 +54,7 @@
             count = data.countReceived;
             countDef = data.countSentDefault;
             countBM = data.countSentBeMine;
+            fillList(valentines);
             console.log(valentines);
         })
     }
@@ -80,7 +82,23 @@
         }
         return a.toString();
     }
+    let links = [];
+    function fillList(valentines)
+    {
+        for (let valentine of valentines)
+        {
+            let obj = {
+                text: updateIfPossible(updateIfPossible(valentine.text.slice(0,50))),
+                name: chooseOne("ID: " + valentine.receiver.id, valentine.receiver.name),
+                href: "/my_valentine?ID="+valentine.id+"&userID="+valentine.receiver.id,
+                type: valentine.type,
+            }
+            console.log(obj.href);
+            links.push(obj);
+            links = links;
+        }
 
+    }
     if (browser) {
         get_data();
     }
@@ -104,18 +122,20 @@
     </div>
     <div id="block">
         <div class="list-group" style="width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center">
-            {#if valentines.length === 0}
+            {#if links.length === 0}
                 <p class = "simpletext" style="font-size: 6vw; text-align: center; margin-top:30vh">😔 Не расстраивайся, повезет в следующем году!</p>
             {/if}
-            {#each valentines as valentine, index}
-                <a href="/my_valentine?userID={valentine.receiver.id}&ID={valentine.id}" class="list-group-item list-group-item-action flex-column align-items-start" style="width: 90vw; {generateStyle(index, valentines)}">
-                    <p class="simpletext" style="text-align: left; line-height: 1.2">{updateIfPossible(valentine.text.slice(0,50))}</p>
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="description" style="padding-top: 1vh">{chooseOne("ID: " + valentine.receiver.id, valentine.receiver.name)}</h5>
-                        <small class="description" style="padding-top: 1vh">{matchType(valentine.type)}</small>
+            {#if links.length > 0}
+                <Listgroup active items={links} let:item class="w-48" style="width: 90vw">
+                    <div style="display: flex; flex-direction: column; gap: 1vh">
+                        <p class="simpletext" style="text-align: left; font-size: 15px; line-height: 1.2">{item.text}</p>
+                        <div style="display: flex; flex-direction: row; justify-content: space-between">
+                            <p class="description">{item.name}</p>
+                            <p class="description">{matchType(item.type)}</p>
+                        </div>
                     </div>
-                </a>
-            {/each}
+                </Listgroup>
+            {/if}
 
         </div>
     </div>

@@ -5,7 +5,7 @@
     import {redirect} from "../../lib/functions.js";
 
 
-    let backendUrl = "https://api_valentinka.splatjov.space"
+    let backendUrl = "https://valentinka.splatjov.space"
     if (browser) {
         window.Telegram.WebApp.setBackgroundColor("#EFEEF4");
         window.Telegram.WebApp.setHeaderColor("#EFEEF4");
@@ -21,6 +21,7 @@
     const url = $page.url;
     let userid = url.searchParams.get('userID');
     let ID = url.searchParams.get('ID');
+    console.log(userid);
     let avatarlink = "avatar.png";
     let name = "Никто не выбран";
     let username = "не выбран";
@@ -64,14 +65,13 @@
             Origin: window.location.origin,
         }).then(resp => {
             if (resp.ok) {
-                time = resp.headers.get('Time');
                 itsTime = true;
                 return resp.json()
-            } else {
-                throw new Error(`HTTP error! Status: ${response.status}`);
             }
         }).then(data => {
-            valentinesMine = data.valentines;
+            if (data) {
+                valentinesMine = data.valentines;
+            }
         });
         await fetch(backendUrl + "/get_valentine_info", {
             method: "get",
@@ -148,10 +148,6 @@
     if (browser && userid != null) {
         displayProtectedImage();
     }
-    if (browser) {
-        console.log(window.Telegram.WebApp.showPopup);
-    }
-
     async function handleOnSubmit() {
         let popupParams = {
             "title": "Ошибка!",
@@ -265,7 +261,7 @@
     {:else}
         <div style="display: flex; flex-direction: column; justify-content: left; max-width: 90vw; margin: 5vw; margin-top: 4vw">
             <Radio name="typeChoose" aria-describedby="helper-checkbox-text" value="be mine" bind:group={radioValue}
-                   style="opacity: 0.5" disabled>Be mine (Осталось {5 - countBM})
+                   style="" disabled>Be mine (Осталось {5 - countBM})
             </Radio>
             <Helper id="helper-checkbox-text" class="ps-6" style="color: #737171; margin-bottom: 2vh">Анонимная валентинка,
                 текст будет виден всегда, отправитель - только если получатель тоже отправит тебе “Be mine” валентинку.
@@ -273,14 +269,14 @@
             </Helper>
 
             <Radio name="typeChoose" aria-describedby="helper-checkbox-text" value="default" bind:group={radioValue}
-                   style="opacity: 0.5" disabled>Обычная (Осталось {20 - countDef})
+                   style="" disabled>Обычная (Осталось {20 - countDef})
             </Radio>
             <Helper id="helper-checkbox-text" class="ps-6" style="color: #737171; margin-bottom: 4vh">Обычная валентинка,
                 неанонимная и их много.
             </Helper>
 
             <Textarea id="textarea-id" on:input={handleInput} placeholder="Your message" rows="4" name="message"
-                      style="width: 90vw; resize: none; opacity: 0.5" disabled bind:value={text}/>
+                      style="width: 90vw; resize: none;" disabled bind:value={text}/>
             <Label for="textarea-id" class="mb-2" style="color: #737171; font-size: 3vw">Лимит: 1000 символов</Label>
         </div>
         {#if !itsTime}

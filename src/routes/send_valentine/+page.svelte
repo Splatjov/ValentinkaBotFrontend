@@ -5,7 +5,7 @@
     import {redirect} from "../../lib/functions.js";
 
 
-    let backendUrl = "https://api_valentinka.splatjov.space"
+    let backendUrl = "https://valentinka.splatjov.space"
 
 
 
