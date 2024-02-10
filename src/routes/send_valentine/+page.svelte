@@ -11,7 +11,7 @@
 
     const url = $page.url;
     let userid = url.searchParams.get('userID');
-    let avatarlink = "https://i.pinimg.com/736x/50/7e/60/507e6098bc58ff5e9aa4097994996c60.jpg";
+    let avatarlink = "avatar.png";
     let name = "Никто не выбран";
     let username = "не выбран";
     let id = "не выбран";
