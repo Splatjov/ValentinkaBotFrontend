@@ -5,7 +5,7 @@
     import {generateStyle} from "../lib/functions.js";
 
 
-    let backendUrl = "https://valentinka.splatjov.space"
+    let backendUrl = "https://api_valentinka.splatjov.space"
     import { browser } from "$app/environment";
     let response;
     // eslint-disable-next-line no-unused-vars

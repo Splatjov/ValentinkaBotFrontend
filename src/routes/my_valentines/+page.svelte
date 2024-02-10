@@ -3,7 +3,7 @@
     import {generateStyle} from "../../lib/functions.js";
     import Countdown from 'svelte-countdown/src/index.js'
 
-    let backendUrl = "https://valentinka.splatjov.space"
+    let backendUrl = "https://api_valentinka.splatjov.space"
     import { browser } from "$app/environment";
     import {Listgroup} from "flowbite-svelte";
     let response;

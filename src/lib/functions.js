@@ -1,4 +1,4 @@
-let backendUrl = "https://valentinka.splatjov.space"
+let backendUrl = "https://api_valentinka.splatjov.space"
 
 
 export function redirect()

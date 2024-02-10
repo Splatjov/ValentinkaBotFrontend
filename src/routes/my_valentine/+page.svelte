@@ -5,7 +5,7 @@
     import {redirect} from "../../lib/functions.js";
 
 
-    let backendUrl = "https://valentinka.splatjov.space"
+    let backendUrl = "https://api_valentinka.splatjov.space"
     if (browser) {
         window.Telegram.WebApp.setBackgroundColor("#EFEEF4");
         window.Telegram.WebApp.setHeaderColor("#EFEEF4");
