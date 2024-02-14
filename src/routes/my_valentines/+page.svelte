@@ -118,17 +118,20 @@
                     style="width: 14vh"
             ></lottie-player>
         </div>
-        <p class = "simpletext" style="font-size: 9vw; text-align: right; margin-top: 2.5vh">Полученные валентинки</p>
+        <p class="simpletext" style="font-size: 9vw; text-align: right; margin-top: 2.5vh">Полученные валентинки</p>
     </div>
     <div id="block">
-        <div class="list-group" style="width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center">
+        <div class="list-group"
+             style="width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center">
             {#if links.length === 0}
-                <p class = "simpletext" style="font-size: 6vw; text-align: center; margin-top:30vh">😔 Не расстраивайся, повезет в следующем году!</p>
+                <p class="simpletext" style="font-size: 6vw; text-align: center; margin-top:30vh">😔 Не расстраивайся,
+                    повезет в следующем году!</p>
             {/if}
             {#if links.length > 0}
                 <Listgroup active items={links} let:item class="w-48" style="width: 90vw">
                     <div style="display: flex; flex-direction: column; gap: 1vh">
-                        <p class="simpletext" style="text-align: left; font-size: 15px; line-height: 1.2">{item.text}</p>
+                        <p class="simpletext"
+                           style="text-align: left; font-size: 15px; line-height: 1.2">{item.text}</p>
                         <div style="display: flex; flex-direction: row; justify-content: space-between">
                             <p class="description">{item.name}</p>
                             <p class="description">{matchType(item.type)}</p>
@@ -141,9 +144,6 @@
     </div>
     </html>
 {/await}
-
-
-
 
 
 <style>

@@ -21,7 +21,7 @@
     const url = $page.url;
     let userid = url.searchParams.get('userID');
     let ID = url.searchParams.get('ID');
-    console.log(userid);
+    console.log(userid, ID);
     let avatarlink = "avatar.png";
     let name = "Никто не выбран";
     let username = "не выбран";
@@ -40,21 +40,19 @@
     let user;
     // eslint-disable-next-line no-unused-vars
     let count = 0, countDef, countBM;
-    function match(valentine)
-    {
+
+    function match(valentine) {
         if (valentine.receiver.id === 0) return undefined;
-        for (let valentineMine of valentinesMine)
-        {
-            if (valentineMine.receiver.id === valentine.receiver.id && valentineMine.receiver.username === valentine.receiver.username && valentine.receiver.id.toString() === userid)
-            {
-                if (valentine.type === 'be mine' && valentineMine.type == 'default')
-                {
+        for (let valentineMine of valentinesMine) {
+            if (valentineMine.receiver.id === valentine.receiver.id && valentineMine.receiver.username === valentine.receiver.username && valentine.receiver.id.toString() === userid) {
+                if (valentine.type === 'be mine' && valentineMine.type == 'default') {
                     flag = true;
                 }
                 return valentineMine;
             }
         }
     }
+
     async function get_data() {
         await fetch(backendUrl + "/get_my_valentine", {
             method: "get",
@@ -136,9 +134,10 @@
                 "UserID": userid
             }),
             Origin: window.location.origin,
+        }).catch(error => {
+            console.error(error);
         });
-        if (responsePhoto.ok) {
-            time = responsePhoto.headers.get('Time');
+        if (responsePhoto && responsePhoto.ok) {
             const blob = await responsePhoto.blob();
             const objectUrl = URL.createObjectURL(blob);
             avatarlink = objectUrl;
@@ -148,6 +147,7 @@
     if (browser && userid != null) {
         displayProtectedImage();
     }
+
     async function handleOnSubmit() {
         let popupParams = {
             "title": "Ошибка!",
@@ -238,13 +238,21 @@
     </div>
     {#if coValentine}
         <div style="display: flex; flex-direction: column; justify-content: left; max-width: 90vw; margin: 5vw; margin-top: 4vw">
-            <Radio name = "typeChoose" aria-describedby="helper-checkbox-text" value="be mine" bind:group={radioValue} style="" disabled><p class="simpletext" style="padding-bottom: 0">Be mine</p></Radio>
-            <Helper id="helper-checkbox-text" class="ps-6" style = "color: #737171; margin-bottom: 4vh; padding-top: 0">Анонимная валентинка, текст будет виден всегда, отправитель - только если получатель тоже отправит тебе “Be mine” валентинку. Идеально для признаний.</Helper>
+            <Radio name="typeChoose" aria-describedby="helper-checkbox-text" value="be mine" bind:group={radioValue}
+                   style="" disabled><p class="simpletext" style="padding-bottom: 0">Be mine</p></Radio>
+            <Helper id="helper-checkbox-text" class="ps-6" style="color: #737171; margin-bottom: 4vh; padding-top: 0">
+                Анонимная валентинка, текст будет виден всегда, отправитель - только если получатель тоже отправит тебе
+                “Be mine” валентинку. Идеально для признаний.
+            </Helper>
 
-            <Radio name = "typeChoose" aria-describedby="helper-checkbox-text" value="default" bind:group={radioValue} style="" disabled><p class="simpletext">Обычная</p></Radio>
-            <Helper id="helper-checkbox-text" class="ps-6" style = "color: #737171; margin-bottom: 6vh">Обычная валентинка, неанонимная и их много.</Helper>
+            <Radio name="typeChoose" aria-describedby="helper-checkbox-text" value="default" bind:group={radioValue}
+                   style="" disabled><p class="simpletext">Обычная</p></Radio>
+            <Helper id="helper-checkbox-text" class="ps-6" style="color: #737171; margin-bottom: 6vh">Обычная
+                валентинка, неанонимная и их много.
+            </Helper>
 
-            <Textarea id="textarea-id" on:input={handleInput} placeholder="Your message" rows="4" name="message" style = "width: 90vw; resize: none;" disabled bind:value={text}/>
+            <Textarea id="textarea-id" on:input={handleInput} placeholder="Your message" rows="4" name="message"
+                      style="width: 90vw; resize: none;" disabled bind:value={text}/>
         </div>
         <div class="simpleflex">
             <p class="description" style="padding-bottom: 3vh; font-size: 15px;">
@@ -254,7 +262,8 @@
                     💜 Это взаимно! 💜
                 {/if}
             </p>
-            <button onclick='location.href="/my_valentine?userID="+{userid}+"&ID="+{coValentine.id}' class='shine-box' style = "width: 90vw; background-color: #A12AAB;">
+            <button onclick='location.href="/my_valentine?userID="+{userid}+"&ID="+{coValentine.id}' class='shine-box'
+                    style="width: 90vw; background-color: #A12AAB;">
                 А что мне отправили?
             </button>
         </div>
@@ -263,7 +272,8 @@
             <Radio name="typeChoose" aria-describedby="helper-checkbox-text" value="be mine" bind:group={radioValue}
                    style="" disabled>Be mine (Осталось {5 - countBM})
             </Radio>
-            <Helper id="helper-checkbox-text" class="ps-6" style="color: #737171; margin-bottom: 2vh">Анонимная валентинка,
+            <Helper id="helper-checkbox-text" class="ps-6" style="color: #737171; margin-bottom: 2vh">Анонимная
+                валентинка,
                 текст будет виден всегда, отправитель - только если получатель тоже отправит тебе “Be mine” валентинку.
                 Идеально для признаний.
             </Helper>
@@ -271,7 +281,8 @@
             <Radio name="typeChoose" aria-describedby="helper-checkbox-text" value="default" bind:group={radioValue}
                    style="" disabled>Обычная (Осталось {20 - countDef})
             </Radio>
-            <Helper id="helper-checkbox-text" class="ps-6" style="color: #737171; margin-bottom: 4vh">Обычная валентинка,
+            <Helper id="helper-checkbox-text" class="ps-6" style="color: #737171; margin-bottom: 4vh">Обычная
+                валентинка,
                 неанонимная и их много.
             </Helper>
 
@@ -279,15 +290,14 @@
                       style="width: 90vw; resize: none;" disabled bind:value={text}/>
             <Label for="textarea-id" class="mb-2" style="color: #737171; font-size: 3vw">Лимит: 1000 символов</Label>
         </div>
-        {#if !itsTime}
             <div class="simpleflex">
-                <p class="description" style="padding-bottom: 1vh; font-size: 10px">💡 Удалил валентинку? Не забудь отправить
+                <p class="description" style="padding-bottom: 1vh; font-size: 10px">💡 Удалил валентинку? Не забудь
+                    отправить
                     новую!</p>
                 <button on:click={handleOnSubmit} style="width: 90vw; background-color: #FF6262">
                     Удалить валентинку
                 </button>
             </div>
-        {/if}
     {/if}
 
 {/await}

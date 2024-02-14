@@ -144,7 +144,7 @@
                 <p class="description" style="padding-bottom: 2vh">🔒 Будет доступно с 14 февраля в 12:00 по UTC+3</p>
             {/if}
             {#if itsTime}
-                <button style = "width: 90vw; margin-bottom: 1vh; opacity: 0.5; cursor: not-allowed; pointer-events: none;" on:click={ping} disabled>
+                <button style = "width: 90vw; margin-bottom: 1vh; opacity: 0.5; cursor: not-allowed; pointer-events: none;" on:click={ping}>
                     Отправить валентинку
                 </button>
             {:else}
@@ -175,15 +175,15 @@
                 <p class = "simpletext" style="font-size: 6vw; text-align: center; margin-top:16vh; width: 90vw">😱 Ого, ты еще ничего никому не отправил, время это исправить</p>
             {/if}
             {#if links.length > 0}
-            <Listgroup active items={links} let:item class="w-48" style="width: 90vw">
-                <div style="display: flex; flex-direction: column; gap: 1vh">
-                    <p class="simpletext" style="text-align: left; font-size: 15px; line-height: 1.2">{item.text}</p>
-                    <div style="display: flex; flex-direction: row; justify-content: space-between">
-                        <p class="description">{item.name}</p>
-                        <p class="description">{matchType(item.type)}</p>
+                <Listgroup active items={links} let:item class="w-48" style="width: 90vw">
+                    <div style="display: flex; flex-direction: column; gap: 1vh">
+                        <p class="simpletext" style="text-align: left; font-size: 15px; line-height: 1.2">{item.text}</p>
+                        <div style="display: flex; flex-direction: row; justify-content: space-between">
+                            <p class="description">{item.name}</p>
+                            <p class="description">{matchType(item.type)}</p>
+                        </div>
                     </div>
-                </div>
-            </Listgroup>
+                </Listgroup>
             {/if}
         </div>
     </div>
