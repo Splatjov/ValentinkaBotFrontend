@@ -144,7 +144,7 @@
                 <p class="description" style="padding-bottom: 2vh">🔒 Будет доступно с 14 февраля в 12:00 по UTC+3</p>
             {/if}
             {#if itsTime}
-                <button style = "width: 90vw; margin-bottom: 1vh; opacity: 0.5; cursor: not-allowed; pointer-events: none;" on:click={ping}>
+                <button style = "width: 90vw; margin-bottom: 1vh;" on:click={ping}>
                     Отправить валентинку
                 </button>
             {:else}
@@ -158,15 +158,7 @@
             <p class = "naming">Валентинки от меня:</p>
             <Countdown from="2024-02-14 12:00:00" dateFormat="YYYY-MM-DD H:m:s" zone="Europe/Moscow" let:remaining>
                 <div class="whatever">
-                    {#if remaining.done === false}
-                        {#if remaining.years === 0 && remaining.months === 0&& remaining.weeks === 0 && remaining.days === 0}
-                            <p class = "naming" style="color: #A12AAB">До отправки: {s(remaining.hours)}:{s(remaining.minutes)}:{s(remaining.seconds)}</p>
-                        {:else }
-                            <p class = "naming" style="color: #A12AAB">Отправятся 14.02</p>
-                        {/if}
-                    {:else}
                         <p class = "naming" style="color: #A12AAB">Время пришло!</p>
-                    {/if}
                 </div>
             </Countdown>
         </div>
